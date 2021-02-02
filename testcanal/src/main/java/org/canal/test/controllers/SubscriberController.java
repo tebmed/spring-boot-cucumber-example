@@ -21,11 +21,21 @@ public class SubscriberController {
 	  @Autowired
 	  private SubscriberService subscriberService;
 	  
+	  
+	  /*
+	   * Get all subscriber list
+	   * @retrun the list
+	   */
 	  @GetMapping("/subscribers")
 	  public List<SubscriberEntity> getAllSubscribers(){
 		  return subscriberService.getAll();
       }
 	  
+	  /*
+	   * Create a new susbcriber
+	   * @param subscriber infromations: firstName, lastName, address
+	   * @retrun the created subscriber
+	   */
 	  @PostMapping(value="/create")
 	  public SubscriberEntity createSubscriber(@RequestParam("firstName") String firstName,
 			                                   @RequestParam("lastName") String lastName,
@@ -34,6 +44,12 @@ public class SubscriberController {
 		   return subscriberService.create(firstName, lastName, address);
 	  }
 	  
+	  
+	  
+	  /*
+	   * update a subscriber address
+	   * @param subscriber id, the new address
+	   */
 	  @PutMapping(value="/updateAddress")
 	  public SubscriberEntity updateSubscriberAddress(@RequestParam("subscriberId") Long subscriberId,
                                                       @RequestParam("newAddress") String newAddress) {

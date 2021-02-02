@@ -21,11 +21,21 @@ public class ContractController {
 	  private ContractService contractService;
 	  
 	  
+	  /*
+	   * Get all conctracts list
+	   * @retrun the list
+	   */
 	  @GetMapping("/contracts")
 	  public List<ContractEntity> getAllContracts(){
 		  return contractService.getAll();
       }
 	  
+	  
+	  /*
+	   * Subscrine to a contract
+	   * @param id of the subscriber
+	   * @retrun the list
+	   */
 	  @PostMapping(value="/subscribe")
 	  public ResponseEntity<String> subscribe(@RequestParam("subscriberId") Long subscriberId,
 			                  @RequestParam("address")      String address) {

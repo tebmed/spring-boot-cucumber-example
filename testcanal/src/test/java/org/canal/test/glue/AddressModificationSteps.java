@@ -1,12 +1,13 @@
 package org.canal.test.glue;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import javax.transaction.Transactional;
 
 import org.canal.test.entities.ContractEntity;
 import org.canal.test.entities.HistoryEntity;
@@ -71,6 +72,7 @@ public class AddressModificationSteps {
 		susbcriberRepository.save(subscriber);
 	}
 	
+	@Transactional
 	@When("^the advisor update the subscriber address$")
 	public void whenTheAdvisorUpdateTheAddress() throws JsonProcessingException{ 
 		
@@ -101,11 +103,12 @@ public class AddressModificationSteps {
 	
 	private void validateUpdatedAddress(SubscriberEntity expected, SubscriberEntity actual) {
 	
-		assertEquals(expected.getAddress(),actual.getAddress());
-	    assertEquals(expected.getContracts().size(), actual.getContracts().size());
-        assertTrue(expected.getContracts().equals(actual.getContracts()));
+		assertEquals(expected.getAddress(), actual.getAddress());
+		assertEquals(actual.getAddress(), "Paris");
+		assertEquals(actual.getContracts().get(0).getAddress(), "Paris");
 	    
 	}
+	
 	@And("^an address modification movement is created with the new address$")
 	public void thenTheNewModificationMovementIsCreatedWithTheNewAddress() {
 		 this.movements = subscriberService.getUpdatesHistory(this.subscriber.getId());
@@ -113,7 +116,7 @@ public class AddressModificationSteps {
 	}
 	
 	private HistoryEntity exists(String oldAddress, String newAddress, List<HistoryEntity> movements) {
-		
+
 		return movements.stream().filter(movement -> (newAddress.equals(movement.getNewAddress()) && (oldAddress.equals(movement.getOldAddress()))))
 				                 .findAny()
 				                 .orElse(null);

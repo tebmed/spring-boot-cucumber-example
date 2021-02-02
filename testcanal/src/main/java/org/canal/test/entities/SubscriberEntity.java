@@ -33,7 +33,7 @@ public class SubscriberEntity {
 	@Column(name="ADDRESS")
 	private String address;
 	
-	@OneToMany(mappedBy = "subscriber", cascade  = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "subscriber", cascade  = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<ContractEntity>  contracts = new ArrayList<>();
 	

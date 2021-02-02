@@ -19,7 +19,7 @@ Pour tester les APIs REST implémentées, il suffit de lancer les appels HTTP av
   - Récupérer les informations sur les contrats d’un abonné (paramètres : identifiant de l’abonné): http://localhost:8080/api/subscriber/getContracts?subscriberId=1
   - Récupérer l’historique des mouvements de modification effectués pour un abonné (paramètres : identifiant de l’abonné): http://localhost:8080/api/subscriber/getUpdatesHistory?subscriberId=1
 
-###Réponses aux questions:
+### Réponses aux questions:
 Quelles bonnes pratiques avez-vous mis en place pour garantir la qualité du code ?
 - J'ai suivi les principes solides pour développer une application orientée objet,
 - J'ai  installé un sonarlint pour mesurer la qualité du code (issues de développement, couverture de tests) d'une manière continue,
